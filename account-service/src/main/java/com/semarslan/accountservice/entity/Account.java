@@ -17,7 +17,6 @@ import java.util.UUID;
 @Table(value = "accounts")
 public class Account implements Serializable {
 
-    @NonNull
     @PrimaryKey
     private String id = UUID.randomUUID().toString();
 
@@ -26,14 +25,26 @@ public class Account implements Serializable {
     private String username;
 
     @Setter
+    @Column(value = "name")
+    private String name;
+
+    @Setter
+    @Column(value = "surname")
+    private String surname;
+
+    @Setter
     @Column(value = "email")
     private String email;
+
+    @Setter
+    @Column(value = "birthDate")
+    private Date birthDate;
 
     @Setter
     @Column(value = "passwd")
     private String passwd;
 
-    @Column(value = "createdAT")
+    @Column(value = "createdAt")
     private Date createdAt;
 
     @Column(value = "isActive")

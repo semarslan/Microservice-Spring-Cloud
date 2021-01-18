@@ -1,18 +1,21 @@
 package com.semarslan.accountservice.service;
 
+import com.semarslan.accountservice.dto.AccountDto;
 import com.semarslan.accountservice.entity.Account;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface AccountService {
 
-    Account getById(String id);
+    AccountDto getById(String id);
 
-    Account save(Account account);
+    AccountDto save(AccountDto accountDto);
 
-    Account update(String id, Account account);
+    AccountDto update(String id, AccountDto accountDto);
 
     void delete(String id);
 
-    List<Account> findAll();
+    Page<AccountDto> getAll(Pageable pageable);
 }
