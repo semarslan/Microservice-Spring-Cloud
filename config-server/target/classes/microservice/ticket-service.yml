@@ -4,6 +4,15 @@ server:
 spring:
   application:
     name: ticket-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/microservice
+    password: postgres
+    username: postgres
+  jpa:
+    database: postgresql
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update
 
 eureka:
   client:
