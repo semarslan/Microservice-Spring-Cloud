@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "tickets")
-@EqualsAndHashCode(of= {"id"})
+@EqualsAndHashCode(of={"id"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ticket extends BaseEntityModel{
