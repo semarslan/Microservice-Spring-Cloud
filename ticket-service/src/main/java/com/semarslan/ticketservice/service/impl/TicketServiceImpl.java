@@ -1,5 +1,7 @@
 package com.semarslan.ticketservice.service.impl;
 
+import com.semarslan.client.AccountServiceClient;
+import com.semarslan.client.contract.AccountDto;
 import com.semarslan.ticketservice.dto.TicketDto;
 import com.semarslan.ticketservice.entity.PriorityType;
 import com.semarslan.ticketservice.entity.Ticket;
@@ -12,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +25,7 @@ public class TicketServiceImpl implements TicketService {
     private final TicketElasticRepository ticketElasticRepository;
     private final TicketRepository ticketRepository;
     private final ModelMapper modelMapper;
+    private final AccountServiceClient accountServiceClient;
 
     /**
      * Ticket Entity
@@ -33,29 +37,48 @@ public class TicketServiceImpl implements TicketService {
     @Override
     @Transactional
     public TicketDto save(TicketDto ticketDto) {
-       Ticket ticket = new Ticket();
-       //TODO Account api'dan doğrulanacak. ticket.setAssignee()
+        /**
+         * Ticket Entity
+         */
+        Ticket ticket = new Ticket();
+        ResponseEntity<AccountDto> accountDtoResponseEntity = accountServiceClient.getById(ticketDto.getAssignee());
+
         if (ticketDto.getDescription() == null)
-            throw new IllegalArgumentException("Description bot null");
+            throw new IllegalArgumentException("Description not null");
 
         ticket.setDescription(ticketDto.getDescription());
         ticket.setNotes(ticketDto.getNotes());
         ticket.setTicketDate(ticketDto.getTicketDate());
         ticket.setTicketStatus(TicketStatus.valueOf(ticketDto.getTicketStatus()));
         ticket.setPriorityType(PriorityType.valueOf(ticketDto.getPriorityType()));
+        ticket.setAssignee(accountDtoResponseEntity.getBody().getId());
+
+        /**
+         * postgre'ye kaydet.
+         */
         ticket = ticketRepository.save(ticket);
 
-       TicketEsModel ticketEsModel = TicketEsModel.builder()
-               .description(ticket.getDescription())
-               .notes(ticket.getNotes())
-               .id(ticket.getId())
-               .priorityType(ticket.getPriorityType().getLabel())
-               .ticketStatus(ticket.getTicketStatus().getLabel())
-               .ticketDate(ticket.getTicketDate()).build();
+        /**
+         * TicketModel nesnesi yarat.
+         */
+        TicketEsModel ticketEsModel = TicketEsModel.builder()
+                .description(ticket.getDescription())
+                .notes(ticket.getNotes())
+                .id(ticket.getId())
+                .assignee(accountDtoResponseEntity.getBody().getNameSurname())
+                .priorityType(ticket.getPriorityType().getLabel())
+                .ticketStatus(ticket.getTicketStatus().getLabel())
+                .ticketDate(ticket.getTicketDate()).build();
 
-       ticketElasticRepository.save(ticketEsModel);
+        /**
+         * elasticSearch'e kaydet
+         */
+        ticketElasticRepository.save(ticketEsModel);
 
-       ticketDto.setId(ticket.getId());
+        /**
+         * Oluşan nesneyi dön.
+         */
+        ticketDto.setId(ticket.getId());
         return ticketDto;
     }
 

@@ -1,20 +1,18 @@
 package com.semarslan.accountservice.service.impl;
 
-import com.semarslan.accountservice.dto.AccountDto;
 import com.semarslan.accountservice.entity.Account;
 import com.semarslan.accountservice.repository.AccountRepository;
 import com.semarslan.accountservice.service.AccountService;
+import com.semarslan.client.contract.AccountDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

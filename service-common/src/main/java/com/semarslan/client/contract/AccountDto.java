@@ -1,4 +1,4 @@
-package com.semarslan.accountservice.dto;
+package com.semarslan.client.contract;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,4 +23,7 @@ public class AccountDto {
 
     private Date birthDate;
 
+    public String getNameSurname(){
+        return this.name + " " + this.surname;
+    }
 }

@@ -1,7 +1,7 @@
 package com.semarslan.accountservice.api;
 
-import com.semarslan.accountservice.dto.AccountDto;
 import com.semarslan.accountservice.service.AccountService;
+import com.semarslan.client.contract.AccountDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
