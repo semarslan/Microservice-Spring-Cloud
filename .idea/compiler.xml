@@ -6,19 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="config-server" />
         <module name="account-service" />
+        <module name="config-server" />
         <module name="eureka-server" />
         <module name="ticket-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="account-service" target="11" />
-      <module name="config-server" target="11" />
-      <module name="eureka-server" target="11" />
-      <module name="microservice" target="11" />
-      <module name="parent-service" target="11" />
-      <module name="ticket-service" target="11" />
+      <module name="account-service" target="1.5" />
+      <module name="config-server" target="1.5" />
+      <module name="eureka-server" target="1.5" />
+      <module name="microservice" target="1.5" />
+      <module name="parent-service" target="1.5" />
+      <module name="ticket-service" target="1.5" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
