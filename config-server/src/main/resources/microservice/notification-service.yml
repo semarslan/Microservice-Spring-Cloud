@@ -1,0 +1,15 @@
+server:
+  port: 8183
+
+spring:
+  application:
+    name: notification-service
+  rabbitmq:
+    username: semarslan
+    password: semarslan
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8500/eureka/
+

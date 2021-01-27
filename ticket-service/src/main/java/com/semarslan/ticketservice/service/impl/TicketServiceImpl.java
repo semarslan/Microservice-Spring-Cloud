@@ -9,6 +9,7 @@ import com.semarslan.ticketservice.entity.TicketStatus;
 import com.semarslan.ticketservice.entity.es.TicketEsModel;
 import com.semarslan.ticketservice.repository.TicketRepository;
 import com.semarslan.ticketservice.repository.es.TicketElasticRepository;
+import com.semarslan.ticketservice.service.TicketNotificationService;
 import com.semarslan.ticketservice.service.TicketService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,7 +25,7 @@ public class TicketServiceImpl implements TicketService {
 
     private final TicketElasticRepository ticketElasticRepository;
     private final TicketRepository ticketRepository;
-    private final ModelMapper modelMapper;
+    private final TicketNotificationService ticketNotificationService;
     private final AccountServiceClient accountServiceClient;
 
     /**
@@ -79,6 +80,12 @@ public class TicketServiceImpl implements TicketService {
          * Oluşan nesneyi dön.
          */
         ticketDto.setId(ticket.getId());
+
+        /**
+         * Kuyruğa notfication'ı yaz
+         */
+        ticketNotificationService.sendToQueue(ticket);
+
         return ticketDto;
     }
 
