@@ -25,8 +25,12 @@
 		<module>config-server</module>
 		<module>eureka-server</module>
 		<module>ticket-service</module>
-		<module>service-common</module>
-		<module>notification-service</module>
+        <module>service-common</module>
+        <module>notification-service</module>
+		<module>zipkin-server</module>
+		<module>hystrix-dashboard</module>
+		<module>gateway-server</module>
+		<module>admin-server</module>
 	</modules>
 
 	<dependencyManagement>
