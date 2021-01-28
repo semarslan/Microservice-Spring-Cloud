@@ -27,18 +27,18 @@
 ### API-GATEWAY
 Mikroservis mimarisi ile ortaya çıkan pek çok servisin yönetiminin kontrolünü sağlamak için kullanılan yapı.
 
-###Eureka-Server & Eureka-Client
+### Eureka-Server & Eureka-Client
 Mikroservislerimize Eureka Client denilebilir. Bu clientlar yml, properties veya java konfigürasyonları ile kendilerine tanımlanmış olan 'Eureka Server' denilen ortama kendilerini kaydediyorlar.
 Daha sonra bir servise ihtiyacı olan diğer servis, ulaşmak istediği servisin bilgilerini Eureka Server'dan alarak, işlemine devame diyor.
 Bu sayde port, IP gibi bilgileri bir yerde tutmak zorunda kalmıyoruz.
 
-###Admin-Server
+### Admin-Server
 .
 
-###Netflix Hystrix
+### Netflix Hystrix
 Mikroservislerin çalışma durumlarını dinler ve bir kullanıcı ui'ı sağlar.
 
-###Zipkin Server
+### Zipkin Server
 Tüm mikroservislerdeki requestlerin tracelerini loglayan yapı, örneğin; bir hata odluğunda nerede olduğunu bulmamızı kolaylaştırır.
 
 
