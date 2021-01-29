@@ -41,7 +41,7 @@ Mikroservis mimarisi ile ortaya çıkan pek çok servisin yönetiminin, kontrol�
 Eureka üzerinden api'ların dışarıya açılmasını, api gateway ile tek bir nokta haline getirilmesini sağlar. Roller eklenebilir.
 
 ### Netflix Hystrix
-Mikroservislerin çalışma durumlarını dinler ve bir kullanıcı ui'ı sağlar. Api'lardaki hata case'lerini hsytrix dashboard ile takibini sağlarız.
+Mikroservislerin çalışma durumlarını dinler ve bir kullanıcı ui'ı sağlar. Api'lardaki hata case'lerini hystrix dashboard ile takibini sağlarız.
 
 ### Zipkin Server
 Tüm mikroservislerdeki requestlerin tracelerini loglayan yapı, örneğin; bir hata odluğunda nerede olduğunu bulmamızı kolaylaştırır.
